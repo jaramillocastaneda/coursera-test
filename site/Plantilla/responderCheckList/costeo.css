@@ -1,0 +1,67 @@
+.encabezado {
+    background-color: dimgray;
+    color: white;
+    text-align: center;
+}
+
+.table-internal > thead > tr {
+      border-bottom: 1px solid #ddd;
+}
+
+.table-internal thead > tr > td {
+    padding: 4px ;
+    text-align: center;
+    font-weight: bold; 
+}
+
+
+.table-internal > tbody > tr {
+      border-bottom: 1px solid #ddd;
+}
+.table-internal tbody > tr > td {
+    padding: 4px ;
+}
+
+.table>thead>tr>th {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.fondo{
+    height: 10px;
+    width: 35px
+}
+
+.seleccionado {
+    height: 22px;   
+    background-color: #ff9999;
+    cursor: default;
+    /*min-width: 30px; */
+}
+
+.fondoColumna {
+    height: 22px;
+    text-align: right;
+    cursor: default;
+    min-width: 30px; 
+}
+
+.control-plan {
+  display: block;
+  width: 100%;
+  height: 20px;
+  padding: 3px 3px;
+  font-size: 11px;
+  text-align: right;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+       -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+          transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}

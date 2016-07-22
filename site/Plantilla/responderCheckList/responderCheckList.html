@@ -1,0 +1,44 @@
+<!--Titulo pagina-->
+  <form role="form" name="oportunidadForm" novalidate>
+  
+    <div class="row titulo">
+            <div class="col-xs-5">
+                 <h1> <span class="glyphicon glyphicon-th-list"></span> Responder CheckList {{preventa.nombre}} </h1>                 
+            </div>
+            <div class="col-xs-7" style="text-align:right; margin-top:10px">
+                <div id="opciones" class="btn-group">
+                    <div class="btn-group">
+                        <a type="button" class="btn btn-options" data-toggle="dropdown"> 
+                            <span class="glyphicon glyphicon-asterisk"></span> opciones <span class="caret"></span></button> </a>
+                        
+                            <ul class="dropdown-menu" role="menu">
+                            <li><a type="button" ng:click=""><span class="glyphicon glyphicon-paperclip"></span> Adjuntos</a>
+                            <li><a type="button" ng:click=""><span class="glyphicon glyphicon-calendar"></span> Reportar</a></li>
+                            <li><a type="button" ng:click=""><span class="glyphicon glyphicon-user"></span> Reasignar</a></li>
+                            <li><a type="button" ng:click=""><span class="glyphicon glyphicon-file"></span> Crear Cliente</a></li>
+                            </ul>
+                    </div>
+                    <a type="button" class="btn btn-options" ng:click=""><span class="glyphicon glyphicon-save"></span> Grabar</a>
+                    <a type="button" class="btn btn-options" ng:click=""><span class="glyphicon glyphicon-send"></span> Enviar</a>
+                    <a type="button" class="btn btn-options" ng-click="cerrar()"><span class="glyphicon glyphicon-remove"></span> Cerrar</a>
+                </div>
+            </div>
+    </div>
+   
+    <ul class="nav nav-tabs">
+        <li  ng-class="{active: tabActivo == 1}" >
+            <a ng:click="clickTab(1)" data-toggle="tab"><span class="glyphicon glyphicon-info-sign"></span> Preventa</a>
+        </li>
+        <li ng-class="{active: tabActivo == 2}">
+            <a ng:click="clickTab(2)" data-toggle="tab"><span class="glyphicon glyphicon-briefcase"></span> Costeo Consultoría</a>
+        </li>
+        <li ng-show="preventa.numero != 0" ng-class="{active: tabActivo == 3}">
+            <a ng:click="clickTab(3)" data-toggle="tab"><span class="glyphicon glyphicon-list-alt"></span> Costeo Outsourcing</a>
+        </li>
+    </ul>
+    
+    <div class="tab-content">
+        <div ng-show="tabActivo == 1" ng-include="''"></div>
+        <div ng-show="tabActivo == 2" ng-include="'/responderCheckList/costeoCons.html'"></div>
+        <div ng-show="tabActivo == 3" ng-include="'/responderCheckList/costeoOut.html'"></div>
+    </div>

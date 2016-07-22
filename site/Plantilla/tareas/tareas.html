@@ -1,0 +1,82 @@
+
+  <!--Titulo pagina-->
+  
+    <div class="row titulo">
+            <div class="col-xs-8">
+                 <h1> <span class="glyphicon glyphicon-th-list"></span> Tareas Pendientes <span class="badge">{{itemsFiltrados.length}}</span></h1>                 
+            </div>
+            <div class="col-xs-4" style="align:right">
+                <div class="form-group has-feedback" style="margin: 20px 0px 20px 0px">
+                    <input type="text" class="form-control input-sm" id="filtro" ng-model="filtro" ng-change="setPagina(1)"/>
+                    <span class="glyphicon glyphicon-search form-control-feedback" style="color:gray" ></span>
+                </div>   
+            </div>
+    </div>
+  
+  
+    <div id="tareas" class="panel panel-default" style="box-shadow ">   
+        <!--<p style="text-align:right; margin: 2px 2px 2px 2px">Refrescar <span class="glyphicon glyphicon-refresh"></span></p>-->
+        <table class="table table-striped table-condensed tareas" fixed-header>
+            <thead>
+                <tr>
+                    <th class="col-xs-1">#</th>
+                    <th class="col-xs-3">Tarea
+                        <span ng-show="getOrden()!='descripcion' && getOrden()!='-descripcion'" class="glyphicon glyphicon-sort option" style="color:#C8C8C8" ng-click="setOrden('descripcion')"></span> 
+                        <span ng-show="getOrden()=='descripcion'" class="glyphicon glyphicon-sort-by-attributes option" ng-click="setOrden('-descripcion')"></span> 
+                        <span ng-show="getOrden()=='-descripcion'"class="glyphicon glyphicon-sort-by-attributes-alt option" ng-click="setOrden('descripcion')"> </span>
+                        </th>
+                    <th class="col-xs-2">Fecha de Creación
+                        <span ng-show="getOrden()!='fechaCreacion' && getOrden()!='-fechaCreacion'" class="glyphicon glyphicon-sort option" style="color:#C8C8C8" ng-click="setOrden('fechaCreacion')"></span> 
+                        <span ng-show="getOrden()=='fechaCreacion'" class="glyphicon glyphicon-sort-by-attributes option" ng-click="setOrden('-fechaCreacion')"></span> 
+                        <span ng-show="getOrden()=='-fechaCreacion'"class="glyphicon glyphicon-sort-by-attributes-alt option" ng-click="setOrden('fechaCreacion')"> </span>
+                        </th>
+                    <th class="col-xs-2">Fecha de Vencimiento
+                        <span ng-show="getOrden()!='fechaVencimiento' && getOrden()!='-fechaVencimiento'" class="glyphicon glyphicon-sort option" style="color:#C8C8C8" ng-click="setOrden('fechaVencimiento')"></span> 
+                        <span ng-show="getOrden()=='fechaVencimiento'" class="glyphicon glyphicon-sort-by-attributes option" ng-click="setOrden('-fechaVencimiento')"></span> 
+                        <span ng-show="getOrden()=='-fechaVencimiento'"class="glyphicon glyphicon-sort-by-attributes-alt option" ng-click="setOrden('fechaVencimiento')"> </span>
+                        </th>
+                    <th class="col-xs-3'">Actividad
+                        <span ng-show="getOrden()!='actividad' && getOrden()!='-actividad'" class="glyphicon glyphicon-sort option" style="color:#C8C8C8" ng-click="setOrden('actividad')"></span> 
+                        <span ng-show="getOrden()=='actividad'" class="glyphicon glyphicon-sort-by-attributes option" ng-click="setOrden('-actividad')"></span> 
+                        <span ng-show="getOrden()=='-actividad'"class="glyphicon glyphicon-sort-by-attributes-alt option" ng-click="setOrden('actividad')"> </span>
+                        </th>
+                    <th class="col-xs-1">Caso
+                        <span ng-show="getOrden()!='caso' && getOrden()!='-caso'" class="glyphicon glyphicon-sort option" style="color:#C8C8C8" ng-click="setOrden('caso')"></span> 
+                        <span ng-show="getOrden()=='caso'" class="glyphicon glyphicon-sort-by-attributes option" ng-click="setOrden('-caso')"></span> 
+                        <span ng-show="getOrden()=='-caso'"class="glyphicon glyphicon-sort-by-attributes-alt option" ng-click="setOrden('caso')"> </span>
+                     </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-click="seleccionarTarea(tarea.caso)" ng-repeat="tarea in itemsFiltrados =(tareas | filter: filtro) |orderBy: campoOrden | filter:q | startFrom:getItemInicial() | limitTo:itemsPagina" >
+                    <td class="col-xs-1">{{((paginaActual-1) * itemsPagina) + $index+1}}</td>
+                    <td class="col-xs-3">{{tarea.descripcion}}</td>
+                    <td class="col-xs-2">{{tarea.fechaCreacion}}</td>
+                    <td class="col-xs-2">{{tarea.fechaVencimiento}}</td>
+                    <td class="col-xs-3">{{tarea.actividad}}</td>
+                    <td class="col-xs-1">{{tarea.caso}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+     <div class="row" style="padding: 5px 0px 5px 0px">
+<!--
+        <div class="col-sm-6">
+            <p>Total tareas: {{itemsFiltrados.length}}.</p>
+        </div>-->
+        
+        <div class="col-sm-12">
+                <div class="paginate" ng-show="itemsFiltrados.length > itemsPagina">
+                    <ul class="pagination">
+                        <li><a ng-click="previous()" >Anterior</a></li>
+                    </ul>
+                    <ul class="pagination" ng-repeat="i in getNumber(itemsFiltrados.length) track by $index">
+                        <li><a ng-click="setPagina($index+1)" ng-class="{'active' : paginaActual == $index+1}" >{{$index+1}}</a></li>  
+                    </ul>
+                    <ul class="pagination">
+                        <li><a ng-click="next(itemsFiltrados.length)">Siguiente</a></li>
+                    </ul>
+                </div>
+            </div>
+     </div>

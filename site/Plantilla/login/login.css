@@ -1,0 +1,27 @@
+
+@font-face {
+    font-family: handelFont;
+    src: url(../css/handel-gothic-d-bold.ttf);
+}
+
+.modal-content {
+    top:50px; 
+}
+
+.btn-custom {
+    color: #fff;
+	background-color: rgb(239,65,52);
+}
+
+.btn-custom:hover {
+    color: #fff;
+	background-color: #C00000;
+}
+
+.btn-custom:focus {
+    color: #fff;
+	background-color: #C00000;
+}
+h4 {
+	font-family: 'handelFont';
+ }
